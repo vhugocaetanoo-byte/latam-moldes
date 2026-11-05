@@ -7,9 +7,9 @@
   function finish() { if (!finished) { finished = true; root.classList.remove('pl-wait'); } }
   setTimeout(finish, 1500);
 
-  var LOC = { AR: 'es-AR', MX: 'es-MX', CO: 'es-CO', CL: 'es-CL', PE: 'es-PE', UY: 'es-UY', PY: 'es-PY', CR: 'es-CR', DO: 'es-DO', GT: 'es-GT' };
-  var SYM = { ARS: '$', MXN: '$', COP: '$', CLP: '$', UYU: '$', DOP: 'RD$', PEN: 'S/', GTQ: 'Q', CRC: '₡', PYG: '₲' };
-  var SHOWCODE = { ARS: 1, MXN: 1, COP: 1, CLP: 1, UYU: 1, DOP: 0, PEN: 0, GTQ: 0, CRC: 0, PYG: 0 };
+  var LOC = { AR: 'es-AR', MX: 'es-MX', CO: 'es-CO', CL: 'es-CL', PE: 'es-PE', UY: 'es-UY', PY: 'es-PY', CR: 'es-CR', DO: 'es-DO', GT: 'es-GT', BO: 'es-BO', HN: 'es-HN' };
+  var SYM = { ARS: '$', MXN: '$', COP: '$', CLP: '$', UYU: '$', DOP: 'RD$', PEN: 'S/', GTQ: 'Q', BOB: 'Bs', HNL: 'L', CRC: '₡', PYG: '₲' };
+  var SHOWCODE = { ARS: 1, MXN: 1, COP: 1, CLP: 1, UYU: 1, DOP: 0, PEN: 0, GTQ: 0, BOB: 1, HNL: 1, CRC: 0, PYG: 0 };
 
   function num(v, locale) {
     var dec = (v >= 100 || v === Math.round(v)) ? 0 : 2;

@@ -2,7 +2,7 @@
 // Países em LOCAL mostram moeda local; qualquer outro fica em US$.
 const LINKS = { main: 'xpdc66x', up: 'kfwsi8b_1285750', down: '3bgxoas' };
 const USD = { main: 9.9, up: 6.9, down: 4.9 };
-const LOCAL = ['AR', 'MX', 'CO', 'CL', 'PE', 'UY', 'PY', 'CR', 'DO', 'GT'];
+const LOCAL = ['AR', 'MX', 'CO', 'CL', 'PE', 'UY', 'PY', 'CR', 'DO', 'GT', 'BO', 'HN', 'SV', 'EC', 'PA', 'NI', 'VE', 'CU', 'PR']; // só vale se a Cakto tiver moeda local para o país
 const TTL = 30 * 60 * 1000;
 const SNAPSHOT = require('./snapshot.json');
 
@@ -52,6 +52,6 @@ module.exports = async (req, res) => {
   const table = await getTable();
   const row = LOCAL.includes(country) ? table[country] : null;
   res.setHeader('Cache-Control', 'private, max-age=600');
-  if (!row || !row.main) return res.status(200).json({ country, cur: 'USD', main: USD.main, up: USD.up, down: USD.down });
+  if (!row || !row.main || row.cur === 'USD') return res.status(200).json({ country, cur: 'USD', main: USD.main, up: USD.up, down: USD.down });
   res.status(200).json({ country, cur: row.cur, main: row.main, up: row.up || null, down: row.down || null });
 };
