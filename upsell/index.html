@@ -23,7 +23,7 @@ h1 em{font-style:normal;color:var(--brand)}
 .pics{max-width:460px;margin:0 auto 22px}
 .pics img{border-radius:14px;box-shadow:var(--shadow);border:3px solid #fff}
 .offer{border:3px solid var(--brand);border-radius:24px;background:#fff;padding:24px 20px;box-shadow:var(--shadow);margin:0 0 8px}
-.price{font-family:'Fraunces',serif;font-weight:800;font-size:56px;color:var(--brand);line-height:1}
+.price{font-family:'Fraunces',serif;font-weight:800;font-size:clamp(34px,12vw,56px);white-space:nowrap;color:var(--brand);line-height:1}
 .pl{color:var(--muted);font-weight:700;margin:6px 0 16px;font-size:15px}
 .btn{display:block;background:var(--brand);color:#fff;font-weight:800;font-size:19px;text-decoration:none;padding:17px 22px;border-radius:99px;box-shadow:0 7px 0 var(--brand-dark),0 12px 24px rgba(214,51,108,.3)}
 .btn:active{transform:translateY(2px);box-shadow:0 5px 0 var(--brand-dark)}
@@ -61,18 +61,19 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:0 20px 28px}
 .mprice strong{font-family:"Fraunces",serif;font-weight:800;font-size:46px;color:var(--brand);line-height:1;white-space:nowrap}
 .mbox .msub{font-size:14px;margin:-6px 0 16px}
 .mbox .no2{display:inline-block;margin-top:16px;color:var(--muted);font-size:14px;text-decoration:underline}
+.pl-wait [data-p],.pl-wait [data-ex],.pl-wait [data-usd],.pl-wait [data-per]{visibility:hidden}
 </style>
 </head>
 <body>
 <div class="top">✓ Tu compra fue confirmada</div>
 <main class="wrap">
   <span class="eyebrow">Oferta solo en esta página</span>
-  <h1>Agrega <em>32 moldes de ropa para bebé</em> a tu pedido por solo <span style="white-space:nowrap">US$ 6,90</span></h1>
-  <p class="sub">Menos de US$ 0,22 por molde. Se suma a lo que acabas de comprar, sin volver a empezar.</p>
+  <h1>Agrega <em>32 moldes de ropa para bebé</em> a tu pedido por solo <span style="white-space:nowrap" data-p="up">US$ 6,90</span></h1>
+  <p class="sub">Menos de <span data-per="up:32">US$ 0,22</span> por molde. Se suma a lo que acabas de comprar, sin volver a empezar.</p>
   <div class="pics"><img src="img/capa.webp" alt="Ropa para bebé y niños: modelos de vestidos, conjuntos, peleles y accesorios" width="900" height="900" fetchpriority="high" decoding="async"></div>
 
   <div class="offer">
-    <div class="price">US$ 6,90</div>
+    <div class="price" data-p="up">US$ 6,90</div>
     <p class="pl">Pago único · acceso de por vida</p>
     <a class="btn" id="accept" href="#">Sí, agregar los 32 moldes</a>
     <a class="btn2 decline" href="#">No, gracias. Continuar sin esta oferta</a>
@@ -83,17 +84,17 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:0 20px 28px}
 
   <div class="box"><h2>Por qué agregarlo hoy</h2><ul class="why"><li><b>Vendes todo el año, no solo en fechas.</b>Los disfraces tienen temporada. La ropa de bebé se compra para baby showers, cumpleaños, sesiones de fotos y recién nacidos.</li><li><b>Ofreces más por cada clienta.</b>Si ya te pidió un disfraz, ahora puedes mostrarle también un pelele, un vestido o un conjunto.</li><li><b>Mismo método que ya tienes.</b>Imprimes, cortas y coses con la ficha técnica.</li></ul></div>
 
-  <div class="calc"><b>La cuenta es simple:</b> el pack cuesta US$ 6,90. Si cobras US$ 10 por una sola prenda, ya recuperaste lo que pagaste.<small>Ejemplo con un precio hipotético. Usa tu precio y tu costo de material.</small></div>
+  <div class="calc"><b>La cuenta es simple:</b> el pack cuesta <span data-p="up">US$ 6,90</span>. Si cobras <span data-usd="10">US$ 10</span> por una sola prenda, ya recuperaste lo que pagaste.<small>Ejemplo con un precio hipotético. Usa tu precio y tu costo de material.</small></div>
 
   <section class="faq"><h2>Preguntas rápidas</h2>
-    <details><summary>¿Es otro pago?</summary><p>Sí, un pago único de US$ 6,90 que se suma a tu pedido de hoy. No hay suscripción ni cobros recurrentes.</p></details>
+    <details><summary>¿Es otro pago?</summary><p>Sí, un pago único de <span data-p="up">US$ 6,90</span> que se suma a tu pedido de hoy. No hay suscripción ni cobros recurrentes.</p></details>
     <details><summary>¿Cómo recibo los moldes?</summary><p>Por correo electrónico, igual que tus moldes de disfraces. Puedes descargarlos las veces que quieras.</p></details>
     <details><summary>¿Y si no me gusta?</summary><p>Tienes 7 días de garantía para pedir la devolución del valor total.</p></details>
   </section>
 
   <div class="offer final">
     <h2>Completa tu catálogo hoy</h2>
-    <p>32 moldes de ropa para bebé por <b>US$ 6,90</b>.</p>
+    <p>32 moldes de ropa para bebé por <b data-p="up">US$ 6,90</b>.</p>
     <a class="btn" id="accept-b" href="#">Sí, agregar los 32 moldes</a>
     <a class="btn2 decline" href="#">No, gracias. Continuar sin esta oferta</a>
   </div>
@@ -105,9 +106,9 @@ footer{text-align:center;color:var(--muted);font-size:12px;padding:0 20px 28px}
     <span class="eyebrow">Última oportunidad</span>
     <h2 id="mt">¿Prefieres empezar con menos?</h2>
     <p>Te dejamos una versión más ligera: <b>25 moldes de ropa para bebé</b> en lugar de los 32.</p>
-    <div class="mprice"><s>US$ 6,90 · 32 moldes</s><strong>US$ 4,90</strong></div>
+    <div class="mprice"><s><span data-p="up">US$ 6,90</span> · 32 moldes</s><strong data-p="down">US$ 4,90</strong></div>
     <p class="msub">25 moldes, con ficha técnica y patrón en A4 y plotter</p>
-    <a class="btn" id="accept2" href="#">Sí, quiero los 25 moldes por US$ 4,90</a>
+    <a class="btn" id="accept2" href="#">Sí, quiero los 25 moldes por <span data-p="down">US$ 4,90</span></a>
     <a class="no2" id="decline2" href="gracias.html">No, gracias. Continuar sin la oferta</a>
   </div>
 </div>
@@ -128,5 +129,6 @@ document.getElementById('mclose').addEventListener('click', closeM);
 modal.addEventListener('click', function(e){ if(e.target===modal) closeM(); });
 document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeM(); });
 </script>
+<script src="/price.js" defer></script>
 </body>
 </html>

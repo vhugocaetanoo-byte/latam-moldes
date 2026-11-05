@@ -178,6 +178,7 @@ footer a{color:#fff;margin:0 8px}
 .guar .seal{display:flex;justify-content:center}
 .seal-svg{width:112px;height:112px;filter:drop-shadow(0 6px 10px rgba(21,122,75,.3))}
 @media(max-width:859px){.heroimg{width:calc(100% + 40px);margin:0 -20px}.heroimg .img{border:0;border-radius:0;box-shadow:none}}
+.pl-wait [data-p],.pl-wait [data-ex],.pl-wait [data-usd],.pl-wait [data-per]{visibility:hidden}
 </style>
 </head>
 <body>
@@ -231,11 +232,11 @@ footer a{color:#fff;margin:0 8px}
       <h2>La cuenta del triple</h2>
       <p style="opacity:.85">Cobras tres veces lo que gastaste en tela. El resto es tu trabajo y tu margen.</p>
       <div class="row">
-        <div class="box"><div class="num">US$ 6,70</div><small>Tela y avíos de un disfraz (ejemplo)</small></div>
-        <div class="box"><div class="num">US$ 20</div><small>Precio de venta, cerca de 3 veces el costo de la tela</small></div>
-        <div class="box"><div class="num">US$ 13,30</div><small>Te quedan por pieza, antes de tu tiempo</small></div>
+        <div class="box"><div class="num" data-ex="cost">US$ 6,70</div><small>Tela y avíos de un disfraz (ejemplo)</small></div>
+        <div class="box"><div class="num" data-ex="sale">US$ 20</div><small>Precio de venta, cerca de 3 veces el costo de la tela</small></div>
+        <div class="box"><div class="num" data-ex="profit">US$ 13,30</div><small>Te quedan por pieza, antes de tu tiempo</small></div>
       </div>
-      <p>Con este ejemplo, un disfraz vendido ya paga el paquete de US$ 9,90.</p>
+      <p>Con este ejemplo, un disfraz vendido ya paga el paquete de <span data-p="main">US$ 9,90</span>.</p>
       <p class="num-ex">Ejemplo ilustrativo. Usa tu costo de material y el precio de tu mercado.</p>
     </div>
   </div>
@@ -330,7 +331,7 @@ footer a{color:#fff;margin:0 8px}
     <div class="offer-box">
       <span class="badge">Oferta de lanzamiento</span>
       <h2 style="font-size:28px">Paquete completo + bono</h2>
-      <div class="price"><small>US$</small>9,90</div>
+      <div class="price" data-p="main" data-big><small>US$</small>9,90</div>
       <p style="color:var(--muted);font-weight:700;margin-top:4px">Pago único</p>
       <ul>
         <li>18 moldes de disfraces infantiles en PDF</li>
@@ -387,7 +388,7 @@ footer a{color:#fff;margin:0 8px}
 <section class="finalcta center">
   <div class="wrap" style="max-width:640px">
     <h2>En la próxima fecha de disfraces, tu anuncio ya puede estar publicado</h2>
-    <p>18 moldes, tallas de 1 a 14 años, por US$ 9,90 y con 7 días de garantía.</p>
+    <p>18 moldes, tallas de 1 a 14 años, por <span data-p="main">US$ 9,90</span> y con 7 días de garantía.</p>
     <a class="btn checkout" href="#oferta">Quiero acceder ahora</a>
   </div>
 </section>
@@ -398,7 +399,7 @@ footer a{color:#fff;margin:0 8px}
 </footer>
 
 <div class="sticky" id="sticky">
-  <div class="p"><small>Pago único</small>US$ 9,90</div>
+  <div class="p"><small>Pago único</small><span data-p="main">US$ 9,90</span></div>
   <a class="btn checkout" id="cta-sticky" href="https://pay.cakto.com.br/xpdc66x">Comprar ahora</a>
 </div>
 
@@ -425,5 +426,6 @@ var BONUS_DEADLINE = "";
   addEventListener('scroll',chk,{passive:true});chk();
 })();
 </script>
+<script src="/price.js" defer></script>
 </body>
 </html>
