@@ -10,9 +10,10 @@ const FALLBACK = { ARS: 1545, MXN: 18.7, COP: 3237, CLP: 966, PEN: 3.45, UYU: 40
 // medida no checkout em 06/11/2026 com US$ 9,90 e 14,90:
 //  AR 18.139 / 27.300 | MX 228,52 / 344,52 (IVA 16% somado) | CL 10.219 / 15.379 (IVA 19% incluso)
 //  CR 4.737 / 7.129   | UY 422 / 634 | PE S/ 37 / 55 (Hotmart arredonda para inteiro)
+//  CO $ 33.857 / 50.957
 // Demais países: câmbio de mercado + 6% (média observada em CL, CR e UY; estimativa).
 // Para ficar exato, medir no checkout da Hotmart e acrescentar aqui.
-const HOTMART_RATE = { AR: 1832.22, MX: 23.1, CL: 1032.2, CR: 478.47, UY: 42.6, PE: 3.71 };
+const HOTMART_RATE = { AR: 1832.22, MX: 23.1, CL: 1032.2, CR: 478.47, UY: 42.6, PE: 3.71, CO: 3420 };
 const SPREAD = 1.06;
 const TTL = 6 * 60 * 60 * 1000;
 let cache = null;
