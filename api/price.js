@@ -3,7 +3,7 @@
 const LINKS = { main: 'xpdc66x', up: 'kfwsi8b_1285750', down: '3bgxoas' };
 // Quando existir o link do Pack Completo (US$ 14,90) na Cakto, coloque o código aqui
 // e o preço passa a vir direto da Cakto. Enquanto vazio, é calculado pela mesma cotação do principal.
-const PREMIUM_LINK = '';
+const PREMIUM_LINK = 'br8ujoc';
 const USD = { main: 9.9, up: 6.9, down: 4.9, premium: 14.9, diff: 5 };
 const LOCAL = ['AR', 'MX', 'CO', 'CL', 'PE', 'UY', 'PY', 'CR', 'DO', 'GT', 'BO', 'HN', 'SV', 'EC', 'PA', 'NI', 'VE', 'CU', 'PR']; // só vale se a Cakto tiver moeda local para o país
 const TTL = 30 * 60 * 1000;
