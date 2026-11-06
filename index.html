@@ -175,6 +175,8 @@ footer a{color:#B9A6C6}
 .sticky .btn{padding:13px 22px;font-size:15px}
 .loc{font-weight:800;color:var(--pink2);font-size:17px;line-height:1.2;letter-spacing:-.01em}
 .loc:empty{display:none}
+.pl-wait [data-pl],.pl-wait [data-pl-big],.pl-wait [data-pl-usd],.pl-wait [data-pl-ex],.pl-wait [data-pl-diff],.pl-wait [data-pl-per]{visibility:hidden}
+.cc{font-size:.3em;vertical-align:baseline;margin-left:8px;letter-spacing:0}
 .fxnote{margin-top:22px;color:#D9C7E3;font-size:14px;font-weight:600}
 .pr+.loc{text-align:center;margin:10px auto 0;background:var(--mint);color:#0F6A3A;border-radius:99px;padding:6px 14px;width:max-content;max-width:100%;font-size:18px}
 .mbox .loc{margin-top:6px;font-size:15px}
@@ -200,6 +202,7 @@ footer a{color:#B9A6C6}
   .hero{padding-top:32px}
 }
 </style>
+<script>document.documentElement.classList.add("pl-wait");setTimeout(function(){document.documentElement.classList.remove("pl-wait")},2000)</script>
 </head>
 <body>
 
@@ -250,13 +253,13 @@ footer a{color:#B9A6C6}
     <span class="pill blue">La cuenta del triple</span>
     <h2>Cobras tres veces lo que gastaste en tela. <mark>El resto es tu margen.</mark></h2>
     <div class="math">
-      <div class="mbox"><div class="num">US$ 6,70</div><div class="loc" data-loc="6.7"></div><small>Tela y avíos de un disfraz (ejemplo)</small></div>
+      <div class="mbox"><div class="num" data-pl-ex="cost">US$ 6,70</div><small>Tela y avíos de un disfraz (ejemplo)</small></div>
       <div class="op">×3</div>
-      <div class="mbox"><div class="num">US$ 20</div><div class="loc" data-loc="20"></div><small>Precio de venta, cerca de 3 veces el costo de la tela</small></div>
+      <div class="mbox"><div class="num" data-pl-ex="sale">US$ 20</div><small>Precio de venta, cerca de 3 veces el costo de la tela</small></div>
       <div class="op">=</div>
-      <div class="mbox win"><div class="num">US$ 13,30</div><div class="loc" data-loc="13.3"></div><small>Te quedan por pieza, antes de tu tiempo</small></div>
+      <div class="mbox win"><div class="num" data-pl-ex="profit">US$ 13,30</div><small>Te quedan por pieza, antes de tu tiempo</small></div>
     </div>
-    <p class="ex">Con este ejemplo, un disfraz vendido ya paga el paquete de <span>US$ 9,90</span>.</p>
+    <p class="ex">Con este ejemplo, un disfraz vendido ya paga el paquete de <span data-pl="9.9">US$ 9,90</span>.</p>
     <p class="note">Ejemplo ilustrativo. Usa tu costo de material y el precio de tu mercado.</p>
   </div>
 </section>
@@ -365,7 +368,7 @@ footer a{color:#B9A6C6}
         <span class="ribbon">⭐ MÁS ELEGIDO</span>
         <h3>Pack Completo</h3>
         <p class="for">Los 18 moldes + 2 bonos de regalo</p>
-        <div class="pr"><small>US$</small>14,90</div><div class="loc" data-loc="14.9" data-exact></div>
+        <div class="pr" data-pl-big="14.9"><small>US$</small>14,90</div>
         <p class="once">Pago único</p>
         <ul class="ticks">
           <li>18 moldes de disfraces infantiles en PDF</li>
@@ -376,7 +379,7 @@ footer a{color:#B9A6C6}
           <li class="plus"><b>Bono 2: Kit Little Stitch</b></li>
           <li>Acceso inmediato y de por vida</li>
         </ul>
-        <p class="save">Por solo US$ 5<span class="aprox" data-loc-wrap hidden> (<span data-loc-diff="14.9-9.9"></span>)</span> más te llevas los 2 bonos</p>
+        <p class="save">Por solo <span data-pl-diff="14.9-9.9">US$ 5</span> más te llevas los 2 bonos</p>
         <a class="btn block checkout" id="cta-premium" href="https://pay.hotmart.com/I108153698I?off=bsitvsaf">Quiero el Pack Completo</a>
         <p class="pay">🔒 Pago seguro · Garantía de 7 días</p>
       </div>
@@ -384,7 +387,7 @@ footer a{color:#B9A6C6}
       <div class="plan basic">
         <h3>Pack Básico</h3>
         <p class="for">Solo los 18 moldes</p>
-        <div class="pr"><small>US$</small>9,90</div><div class="loc" data-loc="9.9" data-exact></div>
+        <div class="pr" data-pl-big="9.9"><small>US$</small>9,90</div>
         <p class="once">Pago único</p>
         <ul class="ticks">
           <li>18 moldes de disfraces infantiles en PDF</li>
@@ -400,7 +403,7 @@ footer a{color:#B9A6C6}
       </div>
 
     </div>
-    <p id="fxNote" class="fxnote" hidden>Valor aproximado en tu moneda, según la cotización del día. El monto final se confirma en el checkout.</p>
+    <p id="fxNote" class="fxnote" hidden>Precio en tu moneda, tal como lo muestra el checkout. Puede variar levemente con el tipo de cambio.</p>
   </div>
 </section>
 
@@ -448,7 +451,7 @@ footer a{color:#B9A6C6}
 <section class="finalcta center">
   <div class="wrap" style="max-width:700px">
     <h2>En la próxima fecha de disfraces, <mark>tu anuncio ya puede estar publicado</mark></h2>
-    <p>18 moldes, tallas de 1 a 14 años, desde <span>US$ 9,90</span> y con 7 días de garantía.</p>
+    <p>18 moldes, tallas de 1 a 14 años, desde <span data-pl="9.9">US$ 9,90</span> y con 7 días de garantía.</p>
     <a class="btn" href="#oferta">Elegir mi pack →</a>
   </div>
 </section>
@@ -459,7 +462,7 @@ footer a{color:#B9A6C6}
 </footer>
 
 <div class="sticky" id="sticky">
-  <div class="p"><small>Desde · pago único</small><span>US$ 9,90</span><span class="loc" data-loc="9.9" data-exact></span></div>
+  <div class="p"><small>Desde · pago único</small><span data-pl="9.9">US$ 9,90</span></div>
   <a class="btn" href="#oferta">Elegir mi pack</a>
 </div>
 
