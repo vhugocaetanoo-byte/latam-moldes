@@ -6,10 +6,13 @@ const COUNTRY_CUR = {
 };
 // Reserva caso a API de câmbio falhe (valores de 06/11/2026).
 const FALLBACK = { ARS: 1545, MXN: 18.7, COP: 3237, CLP: 966, PEN: 3.45, UYU: 40.3, PYG: 6094, CRC: 454, DOP: 60.4, GTQ: 7.65, BOB: 12.1, HNL: 26.9 };
-// Taxa efetiva que a Hotmart cobra (já com spread/impostos), medida no checkout.
-// AR: US$ 9,90 = $ 18.139 e US$ 14,90 = $ 27.300 => 1832,22. Demais países: câmbio de mercado + 6% (estimativa;
-// para ficar exato, medir no checkout da Hotmart com VPN e colocar aqui).
-const HOTMART_RATE = { AR: 1832.22 };
+// Taxa efetiva (total que o comprador paga na Hotmart, já com spread e IVA quando aplicável),
+// medida no checkout em 06/11/2026 com US$ 9,90 e 14,90:
+//  AR 18.139 / 27.300 | MX 228,52 / 344,52 (IVA 16% somado) | CL 10.219 / 15.379 (IVA 19% incluso)
+//  CR 4.737 / 7.129   | UY 422 / 634
+// Demais países: câmbio de mercado + 6% (média observada em CL, CR e UY; estimativa).
+// Para ficar exato, medir no checkout da Hotmart e acrescentar aqui.
+const HOTMART_RATE = { AR: 1832.22, MX: 23.1, CL: 1032.2, CR: 478.47, UY: 42.6 };
 const SPREAD = 1.06;
 const TTL = 6 * 60 * 60 * 1000;
 let cache = null;
