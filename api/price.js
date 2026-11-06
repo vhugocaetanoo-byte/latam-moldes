@@ -55,7 +55,7 @@ module.exports = async (req, res) => {
   const country = String(q || req.headers['x-vercel-ip-country'] || '').toUpperCase();
   const table = await getTable();
   const row = LOCAL.includes(country) ? table[country] : null;
-  res.setHeader('Cache-Control', 'private, max-age=600');
+  res.setHeader('Cache-Control', 'no-store');
   if (!row || !row.main || row.cur === 'USD') return res.status(200).json({ country, cur: 'USD', ...USD });
   const dec = ['CLP', 'PYG', 'CRC'].includes(row.cur) ? 0 : 2;
   const rd = (v) => Math.round(v * 10 ** dec) / 10 ** dec;

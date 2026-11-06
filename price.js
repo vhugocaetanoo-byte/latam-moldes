@@ -49,7 +49,7 @@
     });
   }
 
-  fetch('/api/price', { credentials: 'omit' })
+  fetch('/api/price', { credentials: 'omit', cache: 'no-store' })
     .then(function (r) { return r.json(); })
     .then(apply)
     .catch(function () {})
