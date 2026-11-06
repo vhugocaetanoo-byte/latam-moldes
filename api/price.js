@@ -1,7 +1,10 @@
 // Preço local por país, lido da própria tabela do checkout da Cakto.
 // Países em LOCAL mostram moeda local; qualquer outro fica em US$.
 const LINKS = { main: 'xpdc66x', up: 'kfwsi8b_1285750', down: '3bgxoas' };
-const USD = { main: 9.9, up: 6.9, down: 4.9 };
+// Quando existir o link do Pack Completo (US$ 14,90) na Cakto, coloque o código aqui
+// e o preço passa a vir direto da Cakto. Enquanto vazio, é calculado pela mesma cotação do principal.
+const PREMIUM_LINK = '';
+const USD = { main: 9.9, up: 6.9, down: 4.9, premium: 14.9, diff: 5 };
 const LOCAL = ['AR', 'MX', 'CO', 'CL', 'PE', 'UY', 'PY', 'CR', 'DO', 'GT', 'BO', 'HN', 'SV', 'EC', 'PA', 'NI', 'VE', 'CU', 'PR']; // só vale se a Cakto tiver moeda local para o país
 const TTL = 30 * 60 * 1000;
 const SNAPSHOT = require('./snapshot.json');
@@ -18,8 +21,9 @@ function parse(html) {
 
 async function load() {
   const table = {};
-  for (const k of Object.keys(LINKS)) {
-    const r = await fetch('https://pay.cakto.com.br/' + LINKS[k], {
+  const links = PREMIUM_LINK ? { ...LINKS, premium: PREMIUM_LINK } : LINKS;
+  for (const k of Object.keys(links)) {
+    const r = await fetch('https://pay.cakto.com.br/' + links[k], {
       headers: { 'user-agent': 'Mozilla/5.0 (compatible; price-sync)' },
       signal: AbortSignal.timeout(6000),
     });
@@ -52,6 +56,9 @@ module.exports = async (req, res) => {
   const table = await getTable();
   const row = LOCAL.includes(country) ? table[country] : null;
   res.setHeader('Cache-Control', 'private, max-age=600');
-  if (!row || !row.main || row.cur === 'USD') return res.status(200).json({ country, cur: 'USD', main: USD.main, up: USD.up, down: USD.down });
-  res.status(200).json({ country, cur: row.cur, main: row.main, up: row.up || null, down: row.down || null });
+  if (!row || !row.main || row.cur === 'USD') return res.status(200).json({ country, cur: 'USD', ...USD });
+  const dec = ['CLP', 'PYG', 'CRC'].includes(row.cur) ? 0 : 2;
+  const rd = (v) => Math.round(v * 10 ** dec) / 10 ** dec;
+  const premium = row.premium || rd((row.main * USD.premium) / USD.main);
+  res.status(200).json({ country, cur: row.cur, main: row.main, up: row.up || null, down: row.down || null, premium, diff: rd(premium - row.main) });
 };
