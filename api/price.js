@@ -6,14 +6,13 @@ const COUNTRY_CUR = {
 };
 // Reserva caso a API de câmbio falhe (valores de 06/11/2026).
 const FALLBACK = { ARS: 1545, MXN: 18.7, COP: 3237, CLP: 966, PEN: 3.45, UYU: 40.3, PYG: 6094, CRC: 454, DOP: 60.4, GTQ: 7.65, BOB: 12.1, HNL: 26.9 };
-// Taxa efetiva (total que o comprador paga na Hotmart, já com spread e IVA quando aplicável),
-// medida no checkout em 06/11/2026 com US$ 9,90 e 14,90:
-//  AR 18.139 / 27.300 | MX 228,52 / 344,52 (IVA 16% somado) | CL 10.219 / 15.379 (IVA 19% incluso)
-//  CR 4.737 / 7.129   | UY 422 / 634 | PE S/ 37 / 55 (Hotmart arredonda para inteiro)
-//  CO $ 33.857 / 50.957
-// Demais países: câmbio de mercado + 6% (média observada em CL, CR e UY; estimativa).
-// Para ficar exato, medir no checkout da Hotmart e acrescentar aqui.
-const HOTMART_RATE = { AR: 1832.22, MX: 23.1, CL: 1032.2, CR: 478.47, UY: 42.6, PE: 3.71, CO: 3420 };
+// A Hotmart converte US$ para moeda local com câmbio próprio = câmbio de mercado x margem.
+// A cotação muda todo dia, então guardamos a MARGEM (percentual sobre o câmbio de mercado), não a taxa fixa.
+// Margens medidas no checkout em 06/11/2026 (US$ 9,90 e 14,90; total que o comprador paga):
+//  AR +18,6% | MX +23,4% (IVA de 16% somado ao preço) | CL +6,8% (IVA de 19% incluso) | CR +5,3%
+//  UY +5,8% | PE +7,6% (Hotmart arredonda para inteiro) | CO +5,7%
+// Demais países: +6% (média observada). Estimativa, nunca exata: o valor na página é sempre "≈".
+const MARKUP = { AR: 1.1856, MX: 1.2341, CL: 1.0685, CR: 1.0535, UY: 1.0582, PE: 1.0756, CO: 1.0566 };
 const SPREAD = 1.06;
 const TTL = 6 * 60 * 60 * 1000;
 let cache = null;
@@ -38,6 +37,6 @@ module.exports = async (req, res) => {
   const cur = COUNTRY_CUR[country];
   if (!cur) return res.status(200).json({ country, cur: 'USD', rate: null });
   const r = await rates();
-  const rate = HOTMART_RATE[country] || (r[cur] || FALLBACK[cur]) * SPREAD;
+  const rate = (r[cur] || FALLBACK[cur]) * (MARKUP[country] || SPREAD);
   res.status(200).json({ country, cur, rate });
 };
