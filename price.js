@@ -20,7 +20,7 @@
     [].forEach.call(document.querySelectorAll('[data-loc]'), function (el) {
       var usd = parseFloat(el.getAttribute('data-loc'));
       if (!usd) return;
-      var v = nice(usd * d.rate);
+      var v = el.hasAttribute('data-exact') ? Math.round(usd * d.rate) : nice(usd * d.rate);
       var pre = el.getAttribute('data-pre') || '≈ ';
       el.textContent = pre + sym + ' ' + fmt(v, LOC[d.country]) + (code ? ' ' + d.cur : '');
     });
